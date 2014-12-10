@@ -7,7 +7,7 @@ define([
 		render: function () {
 			return (
 				<div>
-					<h1>About</h1>
+					<h2>About</h2>
 					<p>This is a react boilerplate.</p>
 				</div>
 			)

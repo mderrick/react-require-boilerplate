@@ -6,7 +6,7 @@ define([
 
 		render: function () {
 			return (
-				<h1>Index</h1>
+				<h2>Index</h2>
 			)
 		}
 
