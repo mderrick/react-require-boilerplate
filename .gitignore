@@ -2,6 +2,7 @@
 node_modules
 bower_components
 /dist
+/build
 /env
 .grunt
 _SpecRunner.html
