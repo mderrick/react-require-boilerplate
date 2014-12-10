@@ -9,6 +9,7 @@ module.exports = function(grunt) {
         requirejs: {
             dist: {
                 options: {
+                    optimize: 'none', //uglify2
                     // Our config of requirejs is inside our main.js file
                     mainConfigFile: "./www/app/main.js",
                     baseUrl: "./www/app",
@@ -35,9 +36,8 @@ module.exports = function(grunt) {
                 }
             }
         },
-
         copy: {
-            main: {
+            dist: {
                 files: [{
                     expand: true,
                     flatten: true,
