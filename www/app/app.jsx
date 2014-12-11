@@ -16,7 +16,7 @@ define([
 
     var app = {
         start: function() {
-            Router.run(routes, function (Handler) {
+            Router.run(routes, Router.HistoryLocation, function (Handler) {
                 React.render(<Handler/>, document.body);
             });
         }

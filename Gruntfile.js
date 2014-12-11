@@ -9,16 +9,13 @@ module.exports = function(grunt) {
         requirejs: {
             dist: {
                 options: {
-                    optimize: 'none', //uglify2
-                    // Our config of requirejs is inside our main.js file
+                    optimize: 'uglify2',
                     mainConfigFile: "./www/app/main.js",
                     baseUrl: "./www/app",
-                    // Just remove comments not needed
                     preserveLicenseComments: false,
-                    stubModules: ['jsx'], // Put the JSX transform to sleep
+                    stubModules: ['jsx'],
                     modules: [{
                         name: 'main',
-                        // Do not need JSXTransformer or text in the final build
                         exclude: ['JSXTransformer', 'text']
                     }],
                     dir: './build'
@@ -32,7 +29,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                  'build/index.html': ['www/index.html']
+                  'dist/www/index.html': ['www/index.html']
                 }
             }
         },
@@ -41,13 +38,34 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     flatten: true,
-                    src: ['www/bower_components/requirejs/require.js'], 
-                    dest: 'build/', 
+                    src: ['www/bower_components/requirejs/require.js', 'build/main.js'], 
+                    dest: 'dist/www/', 
+                    filter: 'isFile'
+                }, {
+                    expand: true,
+                    src: ['server/**/*'],
+                    dest: 'dist/',
                     filter: 'isFile'
                 }]
             }
+        },
+        shell: {
+            dev: {
+                command: 'node server/server.js'
+            },
+            dist: {
+                command: 'node dist/server/server.js'
+            }
         }
     });
-
     grunt.registerTask('build', ['requirejs', 'processhtml', 'copy']);
+    grunt.registerTask('server', function (target) {
+        var tasks = [];
+        if (target === 'prod') {
+          tasks.push('build', 'shell:dist');
+        } else {
+          tasks.push('shell:dev');
+        }
+        grunt.task.run(tasks);
+    });
 };
