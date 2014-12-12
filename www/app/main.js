@@ -8,6 +8,12 @@ require.config({
     },
     jsx: {
         fileExtension: '.jsx'
+    },
+    shim: {
+        'react-router': {
+            deps: ['react'],
+            exports: 'ReactRouter'
+        }
     }
 });
 

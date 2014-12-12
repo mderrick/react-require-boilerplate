@@ -12,7 +12,12 @@
     "grunt": "~0.4.5",
     "matchdep": "~0.3.0",
     "express": "~4.10.5",
-    "colors": "~1.0.3"
+    "colors": "~1.0.3",
+    "requirejs": "~2.1.15",
+    "react": "~0.12.1",
+    "react-router": "~0.11.4",
+    "consolidate": "~0.10.0",
+    "handlebars": "~2.0.0"
   },
   "devDependencies": {
     "grunt-requirejs": "~0.4.2",

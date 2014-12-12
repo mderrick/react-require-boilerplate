@@ -7,18 +7,32 @@ define([
     'jsx!./layout/about/about'
 ], function (React, Router, Layout, Index, About) {
 
-    var routes = (
-        <Router.Route handler={Layout} path='/'>
-            <Router.Route handler={About} path='about' />
-            <Router.DefaultRoute handler={Index} />
-        </Router.Route>
-    );
-
     var app = {
-        start: function() {
-            Router.run(routes, Router.HistoryLocation, function (Handler) {
-                React.render(<Handler/>, document.body);
-            });
+        routes: (
+            <Router.Route name="layout" handler={Layout} path='/'>
+                <Router.Route name="about" handler={About} path='about' />
+                <Router.DefaultRoute name="index" handler={Index} />
+            </Router.Route>
+        ),
+
+        /**
+         * Starts the app form the client and the server
+         * @param  {Function} cb    The callback to send HTML from server
+         * @param  {String}   route The path requested
+         */
+        start: function(cb, route) {
+            if (typeof window === 'undefined') {
+                // Serverside start routes
+                Router.run(this.routes, route, function (Handler, state) {
+                    var html = React.renderToString(React.createElement(Handler));
+                    cb(html);
+                });
+            } else {
+                // Clientside start routes
+                Router.run(this.routes, Router.HistoryLocation, function (Handler) {
+                    React.render(<Handler/>, document.body);
+                });
+            }
         }
     };
 

@@ -29,7 +29,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                  'dist/www/index.html': ['www/index.html']
+                  'dist/www/views/index.html': ['www/views/index.html']
                 }
             }
         },
@@ -38,12 +38,17 @@ module.exports = function(grunt) {
                 files: [{
                     expand: true,
                     flatten: true,
-                    src: ['www/bower_components/requirejs/require.js', 'build/main.js'], 
+                    src: [
+                        'www/bower_components/requirejs/require.js',
+                        'build/main.js'
+                    ], 
                     dest: 'dist/www/', 
                     filter: 'isFile'
                 }, {
                     expand: true,
-                    src: ['server/**/*'],
+                    src: [
+                        'server/**/*'
+                    ],
                     dest: 'dist/',
                     filter: 'isFile'
                 }]
