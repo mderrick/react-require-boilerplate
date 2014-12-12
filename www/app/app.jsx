@@ -9,9 +9,10 @@ define([
 
     var app = {
         routes: (
-            <Router.Route name="layout" handler={Layout} path='/'>
-                <Router.Route name="about" handler={About} path='about' />
-                <Router.DefaultRoute name="index" handler={Index} />
+            <Router.Route handler={Layout} path='/'>
+                <Router.Route handler={About} path='about' />
+                <Router.Route name="color" handler={Index} path='/:color' />
+                <Router.DefaultRoute handler={Index} />
             </Router.Route>
         ),
 
