@@ -8,7 +8,7 @@ var express = require('express'),
 
 app.engine('html', cons.handlebars);
 app.set('view engine', 'html');
-app.set('views', path.join(__dirname, '../www/views'));
+app.set('views', path.join(__dirname, './views'));
 
 app.set('port', process.env.PORT || 9001);
 

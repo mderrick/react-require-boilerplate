@@ -29,7 +29,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 files: {
-                  'dist/www/views/index.html': ['www/views/index.html']
+                  'dist/server/views/index.html': ['server/views/index.html']
                 }
             }
         },
@@ -67,7 +67,7 @@ module.exports = function(grunt) {
             after: ['.build']
         }
     });
-    grunt.registerTask('build', ['clean:before', 'requirejs', 'processhtml', 'copy', 'clean:after']);
+    grunt.registerTask('build', ['clean:before', 'requirejs', 'copy', 'processhtml', 'clean:after']);
     grunt.registerTask('server', function (target) {
         var tasks = [];
         if (target === 'prod') {
