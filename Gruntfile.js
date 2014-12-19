@@ -18,7 +18,7 @@ module.exports = function(grunt) {
                         name: 'main',
                         exclude: ['JSXTransformer', 'text']
                     }],
-                    dir: './build'
+                    dir: './.build'
                 } 
             }
         },
@@ -40,7 +40,7 @@ module.exports = function(grunt) {
                     flatten: true,
                     src: [
                         'www/bower_components/requirejs/require.js',
-                        'build/main.js'
+                        '.build/main.js'
                     ], 
                     dest: 'dist/www/', 
                     filter: 'isFile'
@@ -61,9 +61,13 @@ module.exports = function(grunt) {
             dist: {
                 command: 'node dist/server/server.js'
             }
+        },
+        clean: {
+            before: ['dist'],
+            after: ['.build']
         }
     });
-    grunt.registerTask('build', ['requirejs', 'processhtml', 'copy']);
+    grunt.registerTask('build', ['clean:before', 'requirejs', 'processhtml', 'copy', 'clean:after']);
     grunt.registerTask('server', function (target) {
         var tasks = [];
         if (target === 'prod') {
