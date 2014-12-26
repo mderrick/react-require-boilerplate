@@ -67,6 +67,21 @@ module.exports = function(grunt) {
             after: ['.build']
         }
     });
+
+    function command(cmd, done) {
+    var myTerminal = require('child_process').exec;
+        myTerminal(cmd, function(error, stdout, stderr) {
+            grunt.log.write(stdout);
+                if (stderr) {
+                    grunt.log.error(stderr);
+                }
+                if (done) {
+                    done();
+                }
+        });
+    }
+
+
     grunt.registerTask('build', ['clean:before', 'requirejs', 'copy', 'processhtml', 'clean:after']);
     grunt.registerTask('server', function (target) {
         var tasks = [];
@@ -76,5 +91,12 @@ module.exports = function(grunt) {
           tasks.push('shell:dev');
         }
         grunt.task.run(tasks);
+    });
+
+    grunt.registerTask('heroku', function() {
+        // --allow-root option
+        // http://serverfault.com/questions/548537/cant-get-bower-working-bower-esudo-cannot-be-run-with-sudo
+        command('./node_modules/.bin/bower install --allow-root', this.async());
+        grunt.task.run(['build']);
     });
 };
