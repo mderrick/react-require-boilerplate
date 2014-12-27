@@ -33,18 +33,35 @@ module.exports = function(grunt) {
                 }
             }
         },
+        htmlmin: {
+            dist: {
+                options: {
+                    minifyCSS: true,
+                    minifyJS: true,
+                    removeComments: true,
+                    collapseWhitespace: true
+                },
+                files: {
+                  'dist/server/views/index.html': 'dist/server/views/index.html'
+                }
+            }
+        },
+        concat: {
+            dist: {
+                src: ['www/bower_components/requirejs/require.js', '.build/main.js'],
+                dest: 'dist/www/main.js',
+            },
+        },
+        uglify: {
+            dist: {
+                files: {
+                    'dist/www/main.js': ['dist/www/main.js']
+                }
+            }
+        },
         copy: {
             dist: {
                 files: [{
-                    expand: true,
-                    flatten: true,
-                    src: [
-                        'www/bower_components/requirejs/require.js',
-                        '.build/main.js'
-                    ], 
-                    dest: 'dist/www/', 
-                    filter: 'isFile'
-                }, {
                     expand: true,
                     src: [
                         'server/**/*'
@@ -81,8 +98,7 @@ module.exports = function(grunt) {
         });
     }
 
-
-    grunt.registerTask('build', ['clean:before', 'requirejs', 'copy', 'processhtml', 'clean:after']);
+    grunt.registerTask('build', ['clean:before', 'requirejs', 'copy', 'concat', 'uglify', 'processhtml', 'htmlmin', 'clean:after']);
     grunt.registerTask('server', function (target) {
         var tasks = [];
         if (target === 'prod') {
