@@ -5,9 +5,13 @@ define([
 
 	return React.createClass({
 
+		classes: React.addons.classSet({
+			layout: true
+		}),
+
 		render: function () {
 			return (
-				<div>
+				<div className={this.classes}>
 					<h1>React Boilerplate</h1>
 					<ul>
 						<li><Router.Link to="/">Index</Router.Link></li>

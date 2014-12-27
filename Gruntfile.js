@@ -22,6 +22,13 @@ module.exports = function(grunt) {
                 } 
             }
         },
+        cssmin: {
+            dist: {
+                files: {
+                    'dist/www/app.min.css': ['www/app/app.css']
+                }
+            }
+        },
         processhtml: {
             options: {
                 strip: true,
@@ -55,7 +62,7 @@ module.exports = function(grunt) {
         uglify: {
             dist: {
                 files: {
-                    'dist/www/main.js': ['dist/www/main.js']
+                    'dist/www/main.min.js': ['dist/www/main.js']
                 }
             }
         },
@@ -98,7 +105,7 @@ module.exports = function(grunt) {
         });
     }
 
-    grunt.registerTask('build', ['clean:before', 'requirejs', 'copy', 'concat', 'uglify', 'processhtml', 'htmlmin', 'clean:after']);
+    grunt.registerTask('build', ['clean:before', 'requirejs', 'copy', 'concat', 'uglify', 'cssmin', 'processhtml', 'htmlmin', 'clean:after']);
     grunt.registerTask('server', function (target) {
         var tasks = [];
         if (target === 'prod') {

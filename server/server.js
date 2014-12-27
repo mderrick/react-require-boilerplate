@@ -18,7 +18,7 @@ requirejs.config({
     paths: {
         'jsx': './../bower_components/jsx-requirejs-plugin/js/jsx',
         'JSXTransformer': './../bower_components/jsx-requirejs-plugin/js/JSXTransformer',
-        'react': './../bower_components/react/react',
+        'react': './../bower_components/react/react-with-addons',
         'text': './../bower_components/requirejs-text/text',
         'react-router': './../bower_components/react-router/dist/react-router'
     },

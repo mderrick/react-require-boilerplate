@@ -1,0 +1,22 @@
+/**
+ * Application CSS
+ */
+@import "layout/layout.css";
+
+/**
+ * Apps base main CSS
+ */
+body,
+html {
+	background-color: #edebeb;
+	height: 100%;
+	width: 100%;
+}
+
+a {
+	color: #767575;
+}
+
+a.active {
+	font-weight: bold;
+}
