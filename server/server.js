@@ -20,7 +20,8 @@ requirejs.config({
         'JSXTransformer': './../bower_components/jsx-requirejs-plugin/js/JSXTransformer',
         'react': './../bower_components/react/react-with-addons',
         'text': './../bower_components/requirejs-text/text',
-        'react-router': './../bower_components/react-router/dist/react-router'
+        'react-router': './../bower_components/react-router/dist/react-router',
+        'dispatcher': './../bower_components/flux-dispatcher/Dispatcher'
     },
     jsx: {
         fileExtension: '.jsx'

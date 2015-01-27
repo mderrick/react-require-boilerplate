@@ -2,9 +2,9 @@
 define([
     'react',
     'react-router',
-    'jsx!./layout/layout',
-    'jsx!./layout/index/index',
-    'jsx!./layout/about/about'
+    'jsx!./components/layout/layout',
+    'jsx!./components/layout/index/index',
+    'jsx!./components/layout/about/about'
 ], function (React, Router, Layout, Index, About) {
 
     var app = {
